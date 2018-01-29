@@ -6,8 +6,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/admin
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/admin
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the admin-specific stylesheet and JavaScript.
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/admin
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/admin
  * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_Admin {
+class Wp_Cars_Admin {
 
 	/**
 	 * The ID of this plugin.
@@ -65,15 +65,15 @@ class Wp_Cars_Test_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Cars_Test_Loader as all of the hooks are defined
+		 * defined in Wp_Cars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Cars_Test_Loader will then create the relationship
+		 * The Wp_Cars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-cars-test-admin.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-cars-admin.css', array(), $this->version, 'all' );
 
 	}
 
@@ -88,15 +88,15 @@ class Wp_Cars_Test_Admin {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Cars_Test_Loader as all of the hooks are defined
+		 * defined in Wp_Cars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Cars_Test_Loader will then create the relationship
+		 * The Wp_Cars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-cars-test-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-cars-admin.js', array( 'jquery' ), $this->version, false );
 
 	}
 
@@ -141,7 +141,7 @@ class Wp_Cars_Test_Admin {
 	 * Register Custom Widgets
 	 */
 	public function register_custom_widget() {
-		register_widget( 'Wp_Cars_Test_Widget' ); // name of our Widget Class
+		register_widget( 'Wp_Cars_Widget' ); // name of our Widget Class
 	}
 
 }

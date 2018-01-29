@@ -6,8 +6,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/public
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/public
  */
 
 /**
@@ -16,11 +16,11 @@
  * Defines the plugin name, version, and two examples hooks for how to
  * enqueue the public-facing stylesheet and JavaScript.
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/public
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/public
  * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_Public {
+class Wp_Cars_Public {
 
 	/**
 	 * The ID of this plugin.
@@ -49,7 +49,7 @@ class Wp_Cars_Test_Public {
 	 */
 	public function __construct( $plugin_name, $version ) {
 
-		define(AJAX_SECURITY_STRING, 'my-special-string');
+		define('AJAX_SECURITY_STRING', 'my-special-string');
 		$this->plugin_name = $plugin_name;
 		$this->version = $version;
 
@@ -66,15 +66,15 @@ class Wp_Cars_Test_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Cars_Test_Loader as all of the hooks are defined
+		 * defined in Wp_Cars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Cars_Test_Loader will then create the relationship
+		 * The Wp_Cars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-cars-test-public.css', array(), $this->version, 'all' );
+		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/wp-cars-public.css', array(), $this->version, 'all' );
 
 	}
 
@@ -89,15 +89,15 @@ class Wp_Cars_Test_Public {
 		 * This function is provided for demonstration purposes only.
 		 *
 		 * An instance of this class should be passed to the run() function
-		 * defined in Wp_Cars_Test_Loader as all of the hooks are defined
+		 * defined in Wp_Cars_Loader as all of the hooks are defined
 		 * in that particular class.
 		 *
-		 * The Wp_Cars_Test_Loader will then create the relationship
+		 * The Wp_Cars_Loader will then create the relationship
 		 * between the defined hooks and the functions defined in this
 		 * class.
 		 */
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-cars-test-public.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/wp-cars-public.js', array( 'jquery' ), $this->version, false );
 
 		/* Localization custom_scripts */
 		wp_localize_script(
@@ -105,7 +105,7 @@ class Wp_Cars_Test_Public {
 			'WPCARSAJAX',
 			array(
 				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'rest_url' => ( function_exists('rest_url') ) ? rest_url( 'wp/v2' ) : '',
+				'rest_url' => function_exists('rest_url') ? rest_url( 'wp/v2' ) : '',
 				'ajax_error_message' => __('ERROR!!! Try again later or contact with site support administartor!!!', $this->plugin_name),
 				'nonce'=> wp_create_nonce(AJAX_SECURITY_STRING)
 			)
@@ -128,9 +128,9 @@ class Wp_Cars_Test_Public {
 
 		/* Sanitize input data */
 		foreach ($_POST as $key => $val) {
-			$input[$key] = Wp_Cars_Test::clean($val);
+			$input[$key] = Wp_Cars::clean($val);
 		}
-		$input['currentPostID'] = isset($input['currentPostID']) ? $input['currentPostID'] : 0;
+		$input['currentPostID'] = array_key_exists('currentPostID', $input) ? $input['currentPostID'] : 0;
 
 		/* Prepare default response */
 		$response = array(
@@ -167,7 +167,7 @@ class Wp_Cars_Test_Public {
 			setup_postdata($car);
 			$postID = $car->ID;
 			$response['currentPostID'][] = $car->ID;
-			$file_path = plugin_dir_path( __FILE__ ) . "partials/wp-cars-test-public-widget-content.php";
+			$file_path = plugin_dir_path( __FILE__ ) . 'partials/wp-cars-public-widget-content.php';
 			if (file_exists($file_path)) {
 				include $file_path;
 			}

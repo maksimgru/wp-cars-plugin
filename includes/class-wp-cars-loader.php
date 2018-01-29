@@ -6,8 +6,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  */
 
 /**
@@ -17,11 +17,11 @@
  * the plugin, and register them with the WordPress API. Call the
  * run function to execute the list of actions and filters.
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_Loader {
+class Wp_Cars_Loader {
 
 	/**
 	 * The array of actions registered with WordPress.

@@ -7,7 +7,7 @@
 	 */
 
 	$(function () {
-		var $widgetCars = $('.wp-cars-test-widget');
+		var $widgetCars = $('.wp-cars-widget');
 
 		$widgetCars.each(function () {
 			//$(this).find('.btn.show-next-car')
@@ -74,7 +74,7 @@
 			success: function (response, textStatus, jqXHR) {
 				if (response.status) {
 					//console.log('response = ', response);
-					btn.closest('.wp-cars-test-widget')
+					btn.closest('.wp-cars-widget')
 						.find(btn.data('target'))
 						.html(response.html);
 					btn.attr('data-current-post-id', response.currentPostID);

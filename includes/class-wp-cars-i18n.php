@@ -9,8 +9,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  */
 
 /**
@@ -20,11 +20,11 @@
  * so that it is ready for translation.
  *
  * @since      1.0.0
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_i18n {
+class Wp_Cars_i18n {
 
 
 	/**
@@ -35,7 +35,7 @@ class Wp_Cars_Test_i18n {
 	public function load_plugin_textdomain() {
 
 		load_plugin_textdomain(
-			'wp-cars-test',
+			'wp-cars',
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);

@@ -8,8 +8,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/public/partials
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/public/partials
  */
 ?>
 

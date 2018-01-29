@@ -4,24 +4,24 @@
  */
 
 
-.wp-cars-test-widget {}
-.wp-cars-test-widget .widget-description {
+.wp-cars-widget {}
+.wp-cars-widget .widget-description {
     color: #CCC;
     margin: 0 0 1em 0;
     font-style: italic;
     font-weight: bold;
 }
-.wp-cars-test-widget .car-image img {
+.wp-cars-widget .car-image img {
     width:100%;
 }
-.wp-cars-test-widget .car-title {
+.wp-cars-widget .car-title {
     text-transform: uppercase;
     font-weight: bold;
 }
-.wp-cars-test-widget .car-description {
+.wp-cars-widget .car-description {
     font-style: italic;
 }
-.wp-cars-test-widget .car-meta > ul {
+.wp-cars-widget .car-meta > ul {
     list-style-type: disc;
     list-style-position: inside;
 }

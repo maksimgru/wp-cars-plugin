@@ -5,11 +5,11 @@
  *
  * Register and defines the widget for this plugin.
  *
- * @link       http://example.com
+ * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  */
 
 /**
@@ -18,30 +18,31 @@
  * Register and defines the widget for this plugin.
  *
  * @since      1.0.0
- * @package    Plugin_Name
- * @subpackage Plugin_Name/includes
- * @author     Your Name <email@example.com>
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
+ * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_Widget extends WP_Widget {
+class Wp_Cars_Widget extends WP_Widget {
 
 	/*
-    * Description: Constructor of MY Widget
-    *
-    */
-	function __construct()
+	 * Description: Constructor of MY Widget
+	 *
+	 */
+	public function __construct()
 	{
+		//parent::__construct();
 		$widget_ops = array(
-			'classname' => 'wp-cars-test-widget',
+			'classname' => 'wp-cars-widget',
 			'description' => __('Description of this WP CARS Widget', $this->get_widget_textdomain()),
 		);
 
 		$control_ops = array(
 			'width' => 200,
 			'height' => 350,
-			'id_base' => 'wp-cars-test-widget'
+			'id_base' => 'wp-cars-widget'
 		);
 
-		$this->WP_Widget( 'wp-cars-test-widget', __('WP CARS WIDGET', $this->get_widget_textdomain()), $widget_ops, $control_ops );
+		$this->WP_Widget( 'wp-cars-widget', __('WP CARS WIDGET', $this->get_widget_textdomain()), $widget_ops, $control_ops );
 	}
 
 
@@ -51,11 +52,12 @@ class Wp_Cars_Test_Widget extends WP_Widget {
 
 
 	/*
-    * Description: Textdomain string of this empty Widget
-    *
-    */
-	function get_widget_textdomain() {
-		return 'wp-cars-test';
+	 * Description: Textdomain string of this empty Widget
+	 *
+	 * @return string
+	 */
+	public function get_widget_textdomain() {
+		return 'wp-cars';
 	}
 
 
@@ -63,10 +65,13 @@ class Wp_Cars_Test_Widget extends WP_Widget {
 
 
 	/*
-    * Description: Output Widget
-    *
-    */
-	function widget( $args, $instance ) {
+	 * Description: Output Widget
+	 *
+	 * @param array $args
+	 * @param array $insatnce
+	 * @echo
+	 */
+	public function widget( $args, $instance ) {
 		extract( $args );
 
 		// Our variables from the widget settings
@@ -76,17 +81,17 @@ class Wp_Cars_Test_Widget extends WP_Widget {
 
 		echo $before_widget;
 
-		if ( $title ) echo $before_title . $title . $after_title;
+		if ( $title ) {echo $before_title . $title . $after_title;}
 
-		if ( $description ) echo '<div class="widget-description">' . $description . '</div>';
+		if ( $description ) {echo '<div class="widget-description">' . $description . '</div>';}
 ?>
-				<div class="car-content-wrapper"></div>
-				<button class="btn show-next-car"
-					data-current-post-id=""
-					data-target=".car-content-wrapper"
-					data-number-posts="<?php echo $number_posts; ?>">
-					<?php _e('Show Next Car', 'plugin-name'); ?>
-				</button>
+		<div class="car-content-wrapper"></div>
+		<button class="btn show-next-car"
+			data-current-post-id=""
+			data-target=".car-content-wrapper"
+			data-number-posts="<?php echo $number_posts; ?>">
+			<?php _e('Show Next Car', 'plugin-name'); ?>
+		</button>
 <?php
 
 		echo $after_widget;
@@ -96,10 +101,13 @@ class Wp_Cars_Test_Widget extends WP_Widget {
 
 
 	/*
-    * Description: Update Widget
-    *
-    */
-	function update( $new_instance, $old_instance ) {
+	 * Description: Update Widget
+	 *
+	 * @param array $new_instance
+	 * @param array $old_instance
+	 * @return array $instance
+	 */
+	public function update( $new_instance, $old_instance ) {
 		$instance = $old_instance;
 
 		// Strip tags from title and name to remove HTML
@@ -115,14 +123,16 @@ class Wp_Cars_Test_Widget extends WP_Widget {
 
 
 	/*
-    * Description: Form for widget's options
-    *
-    */
-	function form( $instance ) {
+	 * Description: Form for widget's options
+	 *
+	 * @param array $instance
+	 * @echo
+	 */
+	public function form( $instance ) {
 
 		// Set up some default widget settings.
 		$defaults = array(
-			'title' => 'WP Cars Test Widget',
+			'title' => 'WP Cars Widget',
 			'description' => 'Description of this widget',
 			'number_posts' => '1',
 		);

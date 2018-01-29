@@ -6,8 +6,8 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  */
 
 /**
@@ -16,11 +16,11 @@
  * This class defines all code necessary to run during the plugin's activation.
  *
  * @since      1.0.0
- * @package    Wp_Cars_Test
- * @subpackage Wp_Cars_Test/includes
+ * @package    Wp_Cars
+ * @subpackage Wp_Cars/includes
  * @author     Maksim Petrenko <maksimgru@gmail.com>
  */
-class Wp_Cars_Test_Activator {
+class Wp_Cars_Activator {
 
 	/**
 	 * Short Description. (use period)
@@ -73,9 +73,9 @@ class Wp_Cars_Test_Activator {
 	 * Insert Demo content
 	 */
 	private static function insert_demo_data() {
-		$plugin_options = Wp_Cars_Test::get_options();
+		$plugin_options = Wp_Cars::get_options();
 		$demo_data = self::get_demo_data();
-		$is_install_demo_content = ( isset($plugin_options['is_install_demo_content']) && '1' == $plugin_options['is_install_demo_content'] ) ? true : false;
+		$is_install_demo_content = (array_key_exists('is_install_demo_content', $plugin_options) && '1' === $plugin_options['is_install_demo_content']);
 
 		if (!$is_install_demo_content) {
 			foreach ($demo_data as $car) {
@@ -94,14 +94,14 @@ class Wp_Cars_Test_Activator {
 				);
 				$car_id = wp_insert_post( $car_data, true );
 				if ( is_wp_error($car_id) ){
-					//echo $car_id->get_error_message();
+					echo $car_id->get_error_message();
 				}
 				else {
 					self::wp_sideload_image($car_id, $car['image'], $car['title']);
 				}
 			}
 			$plugin_options['is_install_demo_content'] = 1;
-			Wp_Cars_Test::update_options($plugin_options);
+			Wp_Cars::update_options($plugin_options);
 		}
 	}
 
@@ -115,7 +115,7 @@ class Wp_Cars_Test_Activator {
 	private static function wp_sideload_image( $post_id, $file, $desc = null ){
 		global $debug; // is defined outside the function
 
-		if (!$post_id || !$file) return new WP_Error();
+		if (!$post_id || !$file) {return new WP_Error();}
 
 		if ( ! function_exists('media_handle_sideload') ) {
 			require_once ABSPATH . 'wp-admin/includes/image.php';
@@ -135,7 +135,7 @@ class Wp_Cars_Test_Activator {
 		if ( is_wp_error( $tmp ) ) {
 			@unlink( $file_array['tmp_name'] );
 			$file_array['tmp_name'] = '';
-			if ( $debug ) echo 'Error! No Temp downloaded file! <br />';
+			if ( $debug ) {echo 'Error! No Temp downloaded file! <br />';}
 			return $tmp;
 		}
 
@@ -152,10 +152,10 @@ class Wp_Cars_Test_Activator {
 		// handle errors
 		if ( is_wp_error( $attachment_id ) ) {
 			@unlink($file_array['tmp_name']);
-			if ( $debug ) var_dump( $attachment_id->get_error_messages() );
-		}
-		else
+			if ( $debug ) {var_dump( $attachment_id->get_error_messages() );}
+		} else {
 			update_post_meta( $post_id, '_thumbnail_id', $attachment_id );
+		}
 
 		// delete temporary file
 		@unlink( $file_array['tmp_name'] );

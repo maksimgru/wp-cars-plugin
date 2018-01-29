@@ -22,7 +22,7 @@
  * @link       http://www.m-dev.net
  * @since      1.0.0
  *
- * @package    Wp_Cars_Test
+ * @package    Wp_Cars
  */
 
 // If uninstall not called from WordPress, then exit.
